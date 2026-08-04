@@ -1,0 +1,36 @@
+#include "../include/DTDetalleViaje.h"
+
+DTDetalleViaje::DTDetalleViaje(int codigo, DTFecha fecha, std::string origen, std::string destino, int asientosPublicados, float precio, DTDetalleVehiculo& vehi, std::vector<DTDetalleReserva> res){
+    this->codigo = codigo;
+    this->fecha = fecha;
+    this->origen = origen;
+    this->destino = destino;
+    this->asientosPublicados = asientosPublicados;
+    this->precio = precio;
+    this->vehiculo = vehi;
+    this->reservas = res;
+} 
+
+int DTDetalleViaje::getCodigo() { return codigo; }
+DTFecha DTDetalleViaje::getFecha() { return fecha; }
+std::string DTDetalleViaje::getOrigen() { return origen; }
+std::string DTDetalleViaje::getDestino() { return destino; }
+int DTDetalleViaje::getAsientosPublicados() { return asientosPublicados; }
+float DTDetalleViaje::getPrecio() { return precio; }
+DTDetalleVehiculo DTDetalleViaje::getVehiculo() { return vehiculo; }
+std::vector<DTDetalleReserva> DTDetalleViaje::getReservas() { return reservas; }
+
+std::ostream& operator<<(std::ostream& os, DTDetalleViaje dtvi) {
+    os << ">> Viaje <<\n" << "--- Codigo: " << dtvi.getCodigo() << ", Fecha: " << dtvi.getFecha() << 
+    ", Origen: " << dtvi.getOrigen() << 
+    ", Destino: " << dtvi.getDestino() << 
+    ", Asientos publicados: " << dtvi.getAsientosPublicados() 
+    << ", Precio por asiento: " << dtvi.getPrecio() << "\n";
+    std::cout << dtvi.getVehiculo();
+    std::vector<DTDetalleReserva> res = dtvi.getReservas();
+    std::cout << ">> Reservas <<\n";
+    for (DTDetalleReserva it: res){
+        std::cout << it;
+    }
+    return os;
+}
